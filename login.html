@@ -27,14 +27,8 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.3); 
         }
         .login-header { text-align: center; margin-bottom: 25px; }
-        .login-header h1 { 
-            font-size: 22px; 
-            color: #1F2937; 
-        }
-        .login-header h1 i { 
-            color: #D4AF37; 
-            margin-right: 8px; 
-        }
+        .login-header h1 { font-size: 22px; color: #1F2937; }
+        .login-header h1 i { color: #D4AF37; margin-right: 8px; }
         .login-header p { color: #6B7280; font-size: 13px; margin-top: 5px; }
         
         .form-group { margin-bottom: 18px; }
@@ -78,26 +72,9 @@
         }
         .pass-toggle:hover { background: #E5E7EB; }
         
-        .error-msg { 
-            background: #FEE2E2; 
-            color: #991B1B; 
-            padding: 10px 14px; 
-            border-radius: 8px; 
-            font-size: 12px; 
-            margin-bottom: 15px; 
-            display: none; 
-        }
+        .error-msg { background: #FEE2E2; color: #991B1B; padding: 10px 14px; border-radius: 8px; font-size: 12px; margin-bottom: 15px; display: none; }
         .error-msg.show { display: block; }
-        
-        .success-msg { 
-            background: #D1FAE5; 
-            color: #065F46; 
-            padding: 10px 14px; 
-            border-radius: 8px; 
-            font-size: 12px; 
-            margin-bottom: 15px; 
-            display: none; 
-        }
+        .success-msg { background: #D1FAE5; color: #065F46; padding: 10px 14px; border-radius: 8px; font-size: 12px; margin-bottom: 15px; display: none; }
         .success-msg.show { display: block; }
         
         .btn-login { 
@@ -113,7 +90,6 @@
             font-family: 'Poppins', sans-serif; 
         }
         .btn-login:hover { background: #B8860B; color: white; }
-        .btn-login:disabled { opacity: 0.7; cursor: not-allowed; }
         
         .login-footer { text-align: center; margin-top: 20px; }
         .login-footer a { 
@@ -141,49 +117,20 @@
             font-size: 12px; 
             color: #B45309; 
         }
-        .code-note.dev { 
-            background: #FEF3C7; 
-            color: #B45309; 
-            border-color: #FCD34D; 
-        }
+        .code-note.dev { background: #FEF3C7; color: #B45309; border-color: #FCD34D; }
         
-        .resend-link { 
-            color: #D4AF37; 
-            cursor: pointer; 
-            font-size: 12px; 
-            text-decoration: underline; 
-        }
+        .resend-link { color: #D4AF37; cursor: pointer; font-size: 12px; text-decoration: underline; }
         .resend-link:hover { color: #B8860B; }
         
-        .spinner { 
-            display: none; 
-            width: 20px; 
-            height: 20px; 
-            border: 3px solid rgba(0,0,0,0.1); 
-            border-top-color: #1F2937; 
-            border-radius: 50%; 
-            animation: spin 0.6s linear infinite; 
-            margin: 0 auto; 
-        }
+        .spinner { display: none; width: 20px; height: 20px; border: 3px solid rgba(0,0,0,0.1); border-top-color: #1F2937; border-radius: 50%; animation: spin 0.6s linear infinite; margin: 0 auto; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        
         .btn-login.loading .btn-text { display: none; }
         .btn-login.loading .spinner { display: block; }
         
-        .back-link { 
-            color: #6B7280; 
-            font-size: 12px; 
-            text-decoration: none; 
-            display: inline-block; 
-            margin-top: 10px; 
-        }
+        .back-link { color: #6B7280; font-size: 12px; text-decoration: none; display: inline-block; margin-top: 10px; }
         .back-link:hover { color: #D4AF37; }
         
-        .eagle-icon {
-            font-size: 50px;
-            color: #D4AF37;
-            margin-bottom: 10px;
-        }
+        .eagle-icon { font-size: 50px; color: #D4AF37; margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -196,7 +143,6 @@
         <div class="error-msg" id="errorMsg"></div>
         <div class="success-msg" id="successMsg"></div>
 
-        <!-- Step 1: Username & Password -->
         <div class="step active" id="step1">
             <form id="loginForm">
                 <div class="form-group">
@@ -217,10 +163,9 @@
             </form>
         </div>
 
-        <!-- Step 2: 2FA Code -->
         <div class="step" id="step2">
             <p style="text-align:center;font-size:14px;margin-bottom:5px;"><i class="fas fa-shield-alt"></i> Verification Required</p>
-            <p style="text-align:center;font-size:12px;color:#6B7280;margin-bottom:15px;">Enter the verification code below</p>
+            <p style="text-align:center;font-size:12px;color:#6B7280;margin-bottom:15px;">Enter the verification code sent to your email</p>
             <div class="code-note" id="codeNote">Sending code...</div>
             <form id="verifyForm">
                 <div class="form-group">
@@ -233,7 +178,7 @@
                 </button>
             </form>
             <p style="text-align:center;margin-top:12px;">
-                <span class="resend-link" onclick="sendVerificationCode()"><i class="fas fa-redo"></i> Resend Code</span>
+                <span class="resend-link" onclick="resendCode()"><i class="fas fa-redo"></i> Resend Code</span>
             </p>
             <p style="text-align:center;margin-top:5px;">
                 <a href="#" onclick="goBackToLogin()" class="back-link"><i class="fas fa-arrow-left"></i> Back to login</a>
@@ -244,15 +189,27 @@
         <a href="index.html"><i class="fas fa-store"></i> Back to Golden Eagle Mart</a>
     </div>
 
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
     <script>
-        // Admin credentials
+        // ========== EMAILJS CONFIGURATION ==========
+        // REPLACE THESE WITH YOUR ACTUAL VALUES FROM EMAILJS
+        const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY_HERE";      // Get from EmailJS Account → API Keys
+        const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID_HERE";      // Get from EmailJS → Email Services
+        const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID_HERE";    // Get from EmailJS → Email Templates
+        const ADMIN_EMAIL = "YOUR_EMAIL_HERE@gmail.com";        // Your email address
+        
+        // Initialize EmailJS
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+        
+        // ========== LOGIN LOGIC ==========
         const ADMIN_USERNAME = 'admin';
         const ADMIN_PASSWORD = 'admin123';
         
         let currentCode = '';
         let codeExpiry = 0;
         
-        // Toggle password visibility
         function togglePassword() {
             const p = document.getElementById('password');
             const btn = event.target;
@@ -265,13 +222,55 @@
             }
         }
         
-        // Generate random 6-digit code
         function generateCode() {
             return Math.floor(100000 + Math.random() * 900000).toString();
         }
         
-        // Handle login form submission
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        // Send code via EmailJS
+        async function sendCodeToEmail(code) {
+            const note = document.getElementById('codeNote');
+            note.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending verification code to your email...';
+            
+            try {
+                const templateParams = {
+                    to_email: ADMIN_EMAIL,
+                    code: code,
+                    subject: 'Golden Eagle Mart - Login Verification Code',
+                    message: 'Your verification code is: ' + code
+                };
+                
+                const response = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+                
+                if (response.status === 200) {
+                    note.innerHTML = `
+                        <i class="fas fa-envelope"></i> <strong>Code Sent!</strong><br>
+                        Verification code sent to <strong>${ADMIN_EMAIL}</strong><br>
+                        <small>Check your inbox or spam folder</small>
+                    `;
+                    note.className = 'code-note';
+                    return true;
+                }
+            } catch (error) {
+                console.error('EmailJS Error:', error);
+                // Fallback to demo mode if email fails
+                note.innerHTML = `
+                    <i class="fas fa-exclamation-triangle"></i> <strong>DEMO MODE - Email not configured</strong><br>
+                    <span style="font-size: 28px; font-weight: 700; color: #D4AF37;">${code}</span><br>
+                    <small>Use this code to login. Check EmailJS configuration to enable real emails.</small>
+                `;
+                note.className = 'code-note dev';
+                return false;
+            }
+        }
+        
+        async function sendVerificationCode() {
+            currentCode = generateCode();
+            codeExpiry = Date.now() + 300000;
+            await sendCodeToEmail(currentCode);
+        }
+        
+        // Handle login
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const username = document.getElementById('username').value.trim();
@@ -281,11 +280,11 @@
             
             btn.classList.add('loading');
             
-            setTimeout(function() {
+            setTimeout(async function() {
                 if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
                     errorMsg.classList.remove('show');
                     showStep2();
-                    sendVerificationCode();
+                    await sendVerificationCode();
                 } else {
                     errorMsg.textContent = '❌ Invalid username or password.';
                     errorMsg.classList.add('show');
@@ -294,32 +293,17 @@
             }, 500);
         });
         
-        // Show step 2 (verification)
         function showStep2() {
             document.getElementById('step1').classList.remove('active');
             document.getElementById('step2').classList.add('active');
             document.getElementById('errorMsg').classList.remove('show');
         }
         
-        // Send verification code (demo mode - shows on screen)
-        function sendVerificationCode() {
-            currentCode = generateCode();
-            codeExpiry = Date.now() + 300000; // 5 minutes
-            
-            const note = document.getElementById('codeNote');
-            note.innerHTML = `
-                <i class="fas fa-envelope"></i> <strong>DEMO MODE - Your Code</strong><br>
-                <span style="font-size: 32px; font-weight: 700; color: #D4AF37; letter-spacing: 5px;">${currentCode}</span><br>
-                <small>Enter this code to login</small>
-                <hr style="margin: 8px 0;">
-                <small>In production, this code would be emailed to you</small>
-            `;
-            note.className = 'code-note dev';
-            
-            console.log('Verification code:', currentCode);
+        async function resendCode() {
+            await sendVerificationCode();
         }
         
-        // Handle verification form submission
+        // Handle verification
         document.getElementById('verifyForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -343,7 +327,6 @@
                     successMsg.textContent = '✅ Login successful! Redirecting...';
                     successMsg.classList.add('show');
                     
-                    // Store login session
                     localStorage.setItem('goldenEagle_adminLoggedIn', 'true');
                     localStorage.setItem('goldenEagle_adminName', 'Admin');
                     localStorage.setItem('goldenEagle_adminExpiry', (Date.now() + 86400000).toString());
@@ -360,7 +343,6 @@
             }, 500);
         });
         
-        // Go back to login step
         function goBackToLogin() {
             document.getElementById('step2').classList.remove('active');
             document.getElementById('step1').classList.add('active');
@@ -376,8 +358,6 @@
         }
         
         console.log('Golden Eagle Mart Login Ready! 🦅');
-        console.log('Username: admin');
-        console.log('Password: admin123');
     </script>
 </body>
 </html>
